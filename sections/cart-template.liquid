@@ -273,9 +273,9 @@
                   class="cart__submit btn btn--secondary"
                   value="{{ 'cart.general.update' | t }}">
                 {%- endunless -%}
-                <input type="submit" name="checkout"
+                <input type="button" name="checkout" id="btnCheckout"
                   class="cart__submit btn btn--small-wide"
-                  value="{{ 'cart.general.checkout' | t }}">
+                  value="Make Payment">
               </div>
 
               <div class="cart__error-message-wrapper hide" role="alert" data-cart-error-message-wrapper>
@@ -292,6 +292,27 @@
         </div>
       </div>
     </form>
+    
+    <script id="checkout-sdk" src="https://dev.openpayd.com/checkout-sdk/checkout-sdk.js"></script>
+<script language="JavaScript">
+    window.onload = function(){
+        checkoutSdk.api.setup({
+            id: '561aae4d-4260-404c-ab20-d62e7cd92f67',
+            returnUrl: 'http://127.0.0.1:5912',
+            errorUrl: 'http://127.0.0.1:5912/error',
+            ipnUrl: 'http://127.0.0.1:5912/test-transaction-10032'
+        });
+
+        document.getElementById('btnCheckout').onclick = function () {
+            checkoutSdk.api.pay({
+                amount: {{ cart.total_price }} / 100,
+                currency: '{{ cart.currency }}',
+                externalTransactionReference: '{{cart.token}}',
+                description: '{{ cart.note }}' || 'No description'
+            });
+        }
+    }
+</script>
 
     <p class="visually-hidden" data-cart-status
       aria-live="polite"
