@@ -304,7 +304,7 @@
         });     
 
         document.getElementById('btnCheckout').onclick = function () {
-          console.log({{customer |json}});
+          console.log(({{cart.general |json}}));
           debugger;
      
             checkoutSdk.api.pay({
