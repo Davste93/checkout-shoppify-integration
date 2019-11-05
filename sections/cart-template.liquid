@@ -301,13 +301,16 @@
             returnUrl: 'http://127.0.0.1:5912',
             errorUrl: 'http://127.0.0.1:5912/error',
             ipnUrl: 'http://127.0.0.1:5912/test-transaction-10032'
-        });
+        });     
 
         document.getElementById('btnCheckout').onclick = function () {
+          console.log({{customer |json}});
+          debugger;
+     
             checkoutSdk.api.pay({
                 amount: {{ cart.total_price }} / 100,
-                currency: '{{ cart.currency }}',
-                externalTransactionReference: '{{cart.token}}',
+                currency: {{ cart.currency.iso_code | json}},
+                externalTransactionReference: '{{cart.token |json}}',
                 description: '{{ cart.note }}' || 'No description'
             });
         }
