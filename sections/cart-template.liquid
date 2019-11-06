@@ -304,14 +304,14 @@
         });     
 
         document.getElementById('btnCheckout').onclick = function () {
-          console.log(({{cart.general |json}}));
+          const cart = {{cart |json}};
           debugger;
      
             checkoutSdk.api.pay({
-                amount: {{ cart.total_price }} / 100,
-                currency: {{ cart.currency.iso_code | json}},
-                externalTransactionReference: '{{cart.token |json}}',
-                description: '{{ cart.note }}' || 'No description'
+                amount: cart.total_price / 100,
+                currency: cart.currency,
+                externalTransactionReference: cart.token,
+                description: cart.note || 'No description'
             });
         }
     }
