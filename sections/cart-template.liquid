@@ -298,9 +298,9 @@
     window.onload = function(){
         checkoutSdk.api.setup({
             id: '561aae4d-4260-404c-ab20-d62e7cd92f67',
-            returnUrl: '/pages/success',
-            errorUrl: '/pages/error',
-            ipnUrl: '/pages/success'
+            returnUrl: 'https://gaming-accessories-ood.myshopify.com/pages/success',
+            errorUrl: 'https://gaming-accessories-ood.myshopify.com/pages/fail',
+            ipnUrl: 'https://gaming-accessories-ood.myshopify.com'
         });     
 
         document.getElementById('btnCheckout').onclick = function () {
@@ -313,11 +313,6 @@
                 description: cart.note || 'No description'
             });
         }
-        
-        window.addEventListener('message', event => {
-          debugger;
-     		console.log(event)
-    	});
     }
 </script>
 
