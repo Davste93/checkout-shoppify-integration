@@ -305,7 +305,6 @@
 
         document.getElementById('btnCheckout').onclick = function () {
           const cart = {{cart |json}};
-          debugger;
      
             checkoutSdk.api.pay({
                 amount: cart.total_price / 100,
@@ -314,6 +313,9 @@
                 description: cart.note || 'No description'
             });
         }
+        window.addEventListener('message', event => {
+     		console.log(message)
+    	});
     }
 </script>
 
