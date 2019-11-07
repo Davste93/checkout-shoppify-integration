@@ -298,9 +298,9 @@
     window.onload = function(){
         checkoutSdk.api.setup({
             id: '561aae4d-4260-404c-ab20-d62e7cd92f67',
-            returnUrl: 'http://127.0.0.1:5912',
-            errorUrl: 'http://127.0.0.1:5912/error',
-            ipnUrl: 'http://127.0.0.1:5912/test-transaction-10032'
+            returnUrl: '/pages/success',
+            errorUrl: '/pages/error',
+            ipnUrl: '/pages/success'
         });     
 
         document.getElementById('btnCheckout').onclick = function () {
@@ -313,8 +313,10 @@
                 description: cart.note || 'No description'
             });
         }
+        
         window.addEventListener('message', event => {
-     		console.log(message)
+          debugger;
+     		console.log(event)
     	});
     }
 </script>
